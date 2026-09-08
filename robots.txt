@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raynarasousa.github.io/Funeraria-Velattus2/sitemap.xml
