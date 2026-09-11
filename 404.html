@@ -1,33 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <title>Página não encontrada — Funerária Velattus</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<nav>
-  <a href="index.html" class="nav-logo">Velat<span>t</span>us</a>
-  <section class="nav-links">
-    <a href="index.html">Início</a>
-    <a href="sobre.html">Sobre</a>
-    <a href="catalogo.html">Flores</a>
-  </section>
-</nav>
-<section class="cta-section" style="min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-  <span class="section-label">Erro 404</span>
-  <h2 class="section-title">Página não <em>encontrada.</em></h2>
-  <p class="cta-sub">O endereço acessado não existe ou foi movido.</p>
-  <section class="cta-actions">
-    <a href="index.html" class="btn-primary">Voltar ao início</a>
-  </section>
-</section>
-<footer>
-  <section class="footer-logo">Velat<span>t</span>us</section>
-  <section class="footer-text">© 2026 Funerária Velattus.</section>
-</footer>
-</body>
-</html>
+// =========================================================
+// VELATTUS FLORES — Config estática de WhatsApp
+// Site 100% estático (sem servidor/backend). Usado em todas as páginas.
+// Para trocar o número de WhatsApp ou o nome da empresa, edite as
+// constantes abaixo e publique de novo.
+// =========================================================
+(function () {
+  'use strict';
+
+  var CONFIG = {
+    whatsapp_numero: '5511916991439',
+    nome_empresa: 'Velattus Flores',
+  };
+  window.__vltConfig = CONFIG;
+
+  function buildWhatsappUrl(numero, mensagem) {
+    var base = 'https://api.whatsapp.com/send/?phone=' + encodeURIComponent(numero);
+    if (mensagem) base += '&text=' + encodeURIComponent(mensagem);
+    return base;
+  }
+  window.VelattusWhatsapp = { build: buildWhatsappUrl };
+
+  // Sem backend: não há mais estatística de cliques em WhatsApp gravada em
+  // banco de dados. Se um dia isso for necessário de novo, é aqui que entraria
+  // uma chamada para um serviço de analytics (ex.: Google Analytics/Plausible).
+  window.VelattusWhatsapp.registrarClique = function () {};
+
+  // Mantido por compatibilidade com o restante do código (que "espera" a
+  // configuração antes de montar a página) — já resolve na hora, sem rede.
+  window.VelattusConfigReady = Promise.resolve(CONFIG);
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.js-whatsapp[data-numero]').forEach(function (el) {
+      var numero = CONFIG.whatsapp_numero;
+      if (!numero) return;
+      var msg = el.getAttribute('data-msg') || '';
+      el.setAttribute('href', buildWhatsappUrl(numero, msg));
+    });
+  });
+})();

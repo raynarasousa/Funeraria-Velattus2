@@ -1,5 +1,5 @@
 /* =========================================
-   FUNERÁRIA VELATTUS — Estilos
+   VELATTUS FLORES — Estilos
    ========================================= */
 
 *, *::before, *::after {
@@ -203,6 +203,21 @@ nav {
 }
 
 .btn-ghost:hover { color: var(--white); }
+
+/* Mesma ideia do .btn-ghost, mas para usar sobre fundos claros (fora do
+   hero) — o branco translúcido do .btn-ghost fica quase invisível em
+   cima do bege/creme das seções internas. */
+.btn-ghost-dark {
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.btn-ghost-dark:hover { color: var(--navy); }
 
 .hero-right {
   display: flex;
@@ -742,7 +757,7 @@ nav {
 }
 
 /* ---- FOOTER ---- */
-footer {
+body > footer {
   background: #10141f;
   padding: 40px;
   display: flex;
