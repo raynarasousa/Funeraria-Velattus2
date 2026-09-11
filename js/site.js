@@ -1,5 +1,5 @@
 // =========================================================
-// FUNERÁRIA VELATTUS — Config estática de WhatsApp
+// VELATTUS FLORES — Config estática de WhatsApp
 // Site 100% estático (sem servidor/backend). Usado em todas as páginas.
 // Para trocar o número de WhatsApp ou o nome da empresa, edite as
 // constantes abaixo e publique de novo.
@@ -8,9 +8,8 @@
   'use strict';
 
   var CONFIG = {
-    whatsapp_numero: '5511934868348',
-    whatsapp_planos: '5511980800104',
-    nome_empresa: 'Funerária Velattus',
+    whatsapp_numero: '5511916991439',
+    nome_empresa: 'Velattus Flores',
   };
   window.__vltConfig = CONFIG;
 
@@ -32,8 +31,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.js-whatsapp[data-numero]').forEach(function (el) {
-      var tipo = el.getAttribute('data-numero');
-      var numero = tipo === 'planos' ? CONFIG.whatsapp_planos : CONFIG.whatsapp_numero;
+      var numero = CONFIG.whatsapp_numero;
       if (!numero) return;
       var msg = el.getAttribute('data-msg') || '';
       el.setAttribute('href', buildWhatsappUrl(numero, msg));

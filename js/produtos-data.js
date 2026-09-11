@@ -1,5 +1,5 @@
 // =========================================================
-// FUNERÁRIA VELATTUS — Catálogo de flores (dados estáticos)
+// VELATTUS FLORES — Catálogo de flores (dados estáticos)
 // Gerado a partir dos produtos reais do catálogo. Site 100% estático,
 // sem banco de dados: para mudar preço, texto, foto ou adicionar/remover
 // um produto, edite os arrays abaixo e publique de novo (git add / commit / push).

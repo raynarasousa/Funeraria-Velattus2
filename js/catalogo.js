@@ -1,5 +1,5 @@
 // =========================================================
-// FUNERÁRIA VELATTUS — Catálogo de flores (estático)
+// VELATTUS FLORES — Catálogo de flores (estático)
 // Lê produtos e categorias de js/produtos-data.js (sem backend) e monta
 // a vitrine. Para adicionar/editar/remover uma flor, edite esse arquivo.
 // =========================================================
@@ -20,7 +20,7 @@
 
   function whatsappHref(produto) {
     var cfg = window.__vltConfig || {};
-    var numero = cfg.whatsapp_numero || '5511934868348';
+    var numero = cfg.whatsapp_numero || '5511916991439';
     return window.VelattusWhatsapp.build(numero, mensagemContato(produto));
   }
 
@@ -86,6 +86,18 @@
         renderProdutos();
       });
     });
+
+    // Se a página foi aberta com ?cat=ID (link vindo da home), já deixa
+    // essa categoria pré-selecionada e rola até a seção de produtos.
+    var catParam = new URLSearchParams(window.location.search).get('cat');
+    if (catParam) {
+      var alvo = bar.querySelector('.filter-tab[data-categoria="' + catParam + '"]');
+      if (alvo) {
+        bar.querySelectorAll('.filter-tab').forEach(function (b) { b.classList.remove('active'); });
+        alvo.classList.add('active');
+        state.categoriaAtiva = catParam;
+      }
+    }
   }
 
   function renderDestaques() {
